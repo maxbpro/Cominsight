@@ -1,7 +1,7 @@
 package com.maxb.cominsight.services.impl;
 
 
-import com.maxb.cominsight.models.User;
+import com.maxb.cominsight.models.essential.User;
 import com.maxb.cominsight.repositories.UserRepository;
 import com.maxb.cominsight.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

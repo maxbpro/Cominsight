@@ -1,6 +1,6 @@
 package com.maxb.cominsight.controllers;
 
-import com.maxb.cominsight.models.User;
+import com.maxb.cominsight.models.essential.User;
 import com.maxb.cominsight.repositories.UserRepository;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
