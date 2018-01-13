@@ -1,17 +1,23 @@
 package com.maxb.cominsight.controllers;
 
+import com.maxb.cominsight.config.exceptions.EntityNotFoundException;
+import com.maxb.cominsight.models.SuccessResult;
 import com.maxb.cominsight.models.essential.User;
 import com.maxb.cominsight.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
+import java.net.URI;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/v1")
 public class UserController {
 
 
@@ -19,34 +25,51 @@ public class UserController {
     private UserService userService;
 
 
-    @GetMapping("/users")
+    @RequestMapping(value = "/users", method = RequestMethod.GET)
     public List<User> allUsers() {
         return userService.getUsers();
     }
 
-    @PostMapping("/users")
-    public User createUser(@Valid @RequestBody User user) {
+    @RequestMapping(value = "/users", method = RequestMethod.POST)
+    public User createUser(@Valid @RequestBody User user) throws EntityNotFoundException {
+        List<String> roles = new ArrayList<>(Arrays.asList("ADMIN"));
+        user.setRoles(roles);
         return userService.saveUser(user);
     }
 
-    @PutMapping("/users/{id}")
-    public ResponseEntity<User> updateUser(@PathVariable("id") String id, @RequestBody User user) {
+    @RequestMapping(value = "/users/{id}", method = RequestMethod.PUT)
+    public User updateUser(@PathVariable("id") String id, @RequestBody User user) throws EntityNotFoundException {
 
         User oldUser = userService.findUser(id);
         if (oldUser == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            throw new EntityNotFoundException(User.class);
         }
-        oldUser.setName (user.getName());
+        oldUser.setFirstName (user.getFirstName());
+        oldUser.setLastName(user.getLastName());
         oldUser.setUsername(user.getUsername());
-        User updateUser = userService.saveUser(oldUser);
-        return new ResponseEntity<>(updateUser, HttpStatus.OK);
+        oldUser.setAnonymity(user.isAnonymity());
+        oldUser.setGender(user.getGender());
+        oldUser.setEmail(user.getEmail());
+
+        return userService.saveUser(oldUser);
     }
 
-    @DeleteMapping("/users/{id}")
-    public ResponseEntity<String> deleteUser(@PathVariable("id") String id) {
+    @RequestMapping(value = "/users/{id}", method = RequestMethod.DELETE)
+    public SuccessResult deleteUser(@PathVariable("id") String id) {
         userService.deleteUser(id);
-        return new ResponseEntity<>("User has been deleted!", HttpStatus.OK);
+        return new SuccessResult("User has been deleted!");
     }
 
 
+//    public User sendInvite(){
+//
+//    }
+//
+//    public User acceptInvite(){
+//
+//    }
+//
+//    public User removeInvite(){
+//
+//    }
 }

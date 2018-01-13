@@ -17,7 +17,7 @@ import java.security.Principal;
 import java.util.*;
 
 @RestController
-@RequestMapping
+@RequestMapping("/api/v1")
 public class LoginController {
 
     static final String SECRET = "secretkey";

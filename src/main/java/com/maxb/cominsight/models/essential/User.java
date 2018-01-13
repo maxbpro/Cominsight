@@ -1,17 +1,18 @@
 package com.maxb.cominsight.models.essential;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.maxb.cominsight.models.Follower;
-import com.maxb.cominsight.models.Following;
-import com.maxb.cominsight.models.Invite;
-import com.maxb.cominsight.models.Like;
+import com.maxb.cominsight.models.*;
 import lombok.Data;
+import org.hibernate.validator.constraints.Email;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -22,13 +23,29 @@ public class User implements UserDetails {
 
     @Id
     private String id;
+
+    @NotNull
+    @Size(min = 2, max = 50)
     private String firstName;
+
+    @NotNull
+    @Size(min = 2, max = 50)
     private String lastName;
+
+    @NotNull
+    @Size(min = 2, max = 50)
+    @Indexed(unique = true)
     private String username;
+
     private String password;
-    private String name;
+
+    @NotNull
+    @Email
+    @Indexed(unique = true)
+    private String email;
+
     private boolean anonymity = true;
-    private String gender = null;
+    private Gender gender = null;
 
     private boolean accountNonExpired = true;
     private boolean accountNonLocked = true;

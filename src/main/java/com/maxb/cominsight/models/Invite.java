@@ -11,10 +11,11 @@ public class Invite {
     @Id
     private String id;
 
-    private String inviter_id = null;
-    private String user_id_id = null;
+    private String inviterId = null;
+    private String userId = null;
+    private String userName = null;
 
-    private String company_id = null;
+    private String companyId = null;
     private LocalDateTime created = null;
     private String status;
 }

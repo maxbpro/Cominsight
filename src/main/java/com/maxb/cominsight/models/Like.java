@@ -7,7 +7,8 @@ import java.time.LocalDateTime;
 @Data
 public class Like {
 
-    private String user_id = null;
-    private String photo_id = null;
+    private String userId = null;
+    private String userName = null;
+    private String photoId = null;
     private LocalDateTime created = null;
 }
