@@ -1,12 +1,14 @@
 export class Company {
 
-  id: String;
-  title: String;
-  email: String;
+  id: string;
+  title: string;
+  email: string;
 
-
-  constructor(title: String, email: String) {
-    this.title = title;
-    this.email = email;
+  constructor(obj?: any) {
+    this.id = obj && obj.id || "";
+    this.title = obj && obj.title || "";
+    this.email = obj && obj.email || "";
   }
+
+
 }

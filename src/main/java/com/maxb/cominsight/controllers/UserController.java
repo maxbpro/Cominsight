@@ -30,6 +30,16 @@ public class UserController {
         return userService.getUsers();
     }
 
+    @RequestMapping(value = "/users/{id}", method = RequestMethod.GET)
+    public User getUserById(@PathVariable("id") String id) throws EntityNotFoundException {
+        User oldUser = userService.findUser(id);
+        if (oldUser == null) {
+            throw new EntityNotFoundException(User.class);
+        }
+
+        return oldUser;
+    }
+
     @RequestMapping(value = "/users", method = RequestMethod.POST)
     public User createUser(@Valid @RequestBody User user) throws EntityNotFoundException {
         List<String> roles = new ArrayList<>(Arrays.asList("ADMIN"));

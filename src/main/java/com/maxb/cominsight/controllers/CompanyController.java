@@ -38,6 +38,11 @@ public class CompanyController {
         return companyService.getCompanies();
     }
 
+    @RequestMapping(value = "/companies/{id}", method = RequestMethod.GET)
+    public Company getCompanyById(@PathVariable("id") String id) {
+        return companyService.findCompany(id);
+    }
+
     @RequestMapping(value = "/companies", method = RequestMethod.POST)
     public Company createCompany(@Valid @RequestBody Company company) throws EntityNotFoundException {
         return companyService.saveCompany(company);

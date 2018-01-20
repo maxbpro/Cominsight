@@ -1,6 +1,8 @@
 package com.maxb.cominsight.controllers;
 
+import com.maxb.cominsight.models.essential.Company;
 import com.maxb.cominsight.models.essential.User;
+import com.maxb.cominsight.repositories.CompanyRepository;
 import com.maxb.cominsight.repositories.UserRepository;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -25,6 +27,9 @@ public class LoginController {
 
     @Autowired
     private UserRepository usersRepository;
+
+    @Autowired
+    private CompanyRepository companyRepository;
 
 //    @PostConstruct
 //    private void init(){
@@ -51,9 +56,17 @@ public class LoginController {
         if (usersRepository.findByUsername(appUser.getUsername()) != null) {
             throw new RuntimeException("Username already exist");
         }
+
+        Company company = companyRepository.findOne(appUser.getId());
+
+        if(company == null){
+            throw new RuntimeException("Company doesn't exist");
+        }
+
         List<String> roles = new ArrayList<>();
         roles.add("USER");
         appUser.setRoles(roles);
+        appUser.setCompany(company);
         return new ResponseEntity<>(usersRepository.save(appUser), HttpStatus.CREATED);
     }
 

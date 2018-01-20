@@ -37,27 +37,27 @@ public class WebConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-//             http
-//                .authorizeRequests()
-//                .antMatchers("/static").permitAll()
-//                // authenticate all remaining URLS
-//                .anyRequest().fullyAuthenticated()
-//                .and()
-//                // adding JWT filter
-//                .addFilterBefore(new JWTFilter(), UsernamePasswordAuthenticationFilter.class)
-//                // enabling the basic authentication
-//                .httpBasic()
-//                .and()
-//                .logout().logoutSuccessHandler(new HttpStatusReturningLogoutSuccessHandler())
-//                .and()
-//                // configuring the session as state less. Which means there is
-//                // no session in the server
-//                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-//                .and()
-//                // disabling the CSRF - Cross Site Request Forgery
-//                .csrf().disable();
+             http
+                .authorizeRequests()
+                .antMatchers("/static").permitAll()
+                // authenticate all remaining URLS
+                .anyRequest().fullyAuthenticated()
+                .and()
+                // adding JWT filter
+                .addFilterBefore(new JWTFilter(), UsernamePasswordAuthenticationFilter.class)
+                // enabling the basic authentication
+                .httpBasic()
+                .and()
+                .logout().logoutSuccessHandler(new HttpStatusReturningLogoutSuccessHandler())
+                .and()
+                // configuring the session as state less. Which means there is
+                // no session in the server
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
+                // disabling the CSRF - Cross Site Request Forgery
+                .csrf().disable();
 
-        http.csrf().disable();
+        //http.csrf().disable();
 
     }
 

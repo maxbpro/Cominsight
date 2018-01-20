@@ -15,6 +15,11 @@ import {AlertService} from './services/alert.service';
 import {AuthenticationService} from "./services/authentication.service";
 import {CompanyService} from "./services/company.service";
 import {UserService} from './services/user.service';
+import {JwtInterceptor} from './helpers/jwt.interceptor';
+import { AlertComponent } from './directives/alert/alert.component';
+import { CompanyComponent } from './company/company.component';
+import { CompanyEditComponent } from './company-edit/company-edit.component';
+import { UserEditComponent } from './user-edit/user-edit.component';
 
 
 @NgModule({
@@ -23,7 +28,11 @@ import {UserService} from './services/user.service';
     LoginComponent,
     UserRegistrationComponent,
     CompanyRegistrationComponent,
-    HomeComponent
+    HomeComponent,
+    AlertComponent,
+    CompanyComponent,
+    CompanyEditComponent,
+    UserEditComponent
   ],
   imports: [
     BrowserModule,
