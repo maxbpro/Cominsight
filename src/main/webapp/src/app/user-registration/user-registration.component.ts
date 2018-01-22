@@ -1,9 +1,9 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {UserService} from '../services/user.service';
+import {Component} from '@angular/core';
 import {AlertService} from "../services/alert.service";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {User} from "../models/user";
 import {Company} from "../models/company";
+import {AuthenticationService} from "../services/authentication.service";
 
 @Component({
   selector: 'app-user-registration',
@@ -16,24 +16,26 @@ export class UserRegistrationComponent {
 
   constructor(
     private router: Router,
-    private userService: UserService,
-    private alertService: AlertService) { }
+    private authenticationService: AuthenticationService,
+    private alertService: AlertService) {
+
+  }
 
 
 
   register() {
     this.loading = true;
-    this.model.company = new Company({id:"5a6385e4cda2e8f579a765b5"});
-    this.userService.register(this.model)
+    this.model.company = new Company({id:"5a6441cdcda2e803aaa5365a"});
+    this.authenticationService.register(this.model)
       .subscribe(
-        user => {
-          this.alertService.success('Registration successful', true);
+        data => {
           this.router.navigate(['/']);
         },
         error => {
-          this.alertService.error(error);
+          this.alertService.error(error.statusText);
           this.loading = false;
         });
+
   }
 
 }

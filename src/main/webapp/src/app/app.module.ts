@@ -20,6 +20,7 @@ import { AlertComponent } from './directives/alert/alert.component';
 import { CompanyComponent } from './company/company.component';
 import { CompanyEditComponent } from './company-edit/company-edit.component';
 import { UserEditComponent } from './user-edit/user-edit.component';
+import {TimelineService} from "./services/timeline.service";
 
 
 @NgModule({
@@ -45,6 +46,7 @@ import { UserEditComponent } from './user-edit/user-edit.component';
     AlertService,
     AuthenticationService,
     CompanyService,
+    TimelineService,
     UserService,
     {
       provide: HTTP_INTERCEPTORS,

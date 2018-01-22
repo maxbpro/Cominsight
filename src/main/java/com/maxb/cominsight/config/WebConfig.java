@@ -3,6 +3,7 @@ package com.maxb.cominsight.config;
 import com.maxb.cominsight.services.MongoUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -29,8 +30,9 @@ public class WebConfig extends WebSecurityConfigurerAdapter {
     public void configure(WebSecurity web) throws Exception {
 
         web.ignoring()
+                .antMatchers(HttpMethod.OPTIONS,"/**")
                 .antMatchers("/", "/vendor/**", "/css/**", "/js/**", "/img/**", "/lib/**",
-                        "/modules/**", "/app/**", "/static/**", "/authenticate", "/favicon.ico", "/index.html");
+                        "/modules/**", "/app/**", "/static/**", "/api/v1/authenticate", "/api/v1/register","/api/v1/companies","/favicon.ico", "/index.html");
     }
 
 
@@ -38,11 +40,7 @@ public class WebConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
              http
-                .authorizeRequests()
-                .antMatchers("/static").permitAll()
-                // authenticate all remaining URLS
-                .anyRequest().fullyAuthenticated()
-                .and()
+
                 // adding JWT filter
                 .addFilterBefore(new JWTFilter(), UsernamePasswordAuthenticationFilter.class)
                 // enabling the basic authentication
@@ -55,12 +53,15 @@ public class WebConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 // disabling the CSRF - Cross Site Request Forgery
-                .csrf().disable();
+                .csrf().disable()
+                 .authorizeRequests()
+                     .antMatchers("/static").permitAll()
+                     .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+                     .anyRequest().authenticated();
 
         //http.csrf().disable();
 
     }
-
 
 
 }

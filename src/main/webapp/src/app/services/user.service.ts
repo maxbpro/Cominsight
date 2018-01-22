@@ -15,11 +15,6 @@ export class UserService {
     });
   }
 
-  register(user: User) : Observable<User>{
-    return this.http.post<User>(environment.serverEndpoint + '/api/v1/users', user).map(data =>{
-      return data["result"];
-    });
-  }
 
   update(user: User) : Observable<User>{
     return this.http.put(environment.serverEndpoint + '/api/v1/users/' + user.id, user).map(data =>{

@@ -40,12 +40,7 @@ public class UserController {
         return oldUser;
     }
 
-    @RequestMapping(value = "/users", method = RequestMethod.POST)
-    public User createUser(@Valid @RequestBody User user) throws EntityNotFoundException {
-        List<String> roles = new ArrayList<>(Arrays.asList("ADMIN"));
-        user.setRoles(roles);
-        return userService.saveUser(user);
-    }
+
 
     @RequestMapping(value = "/users/{id}", method = RequestMethod.PUT)
     public User updateUser(@PathVariable("id") String id, @RequestBody User user) throws EntityNotFoundException {
