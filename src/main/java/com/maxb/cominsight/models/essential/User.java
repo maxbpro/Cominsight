@@ -34,14 +34,14 @@ public class User implements UserDetails {
 
     @NotNull
     @Size(min = 2, max = 50)
-    @Indexed(unique = true)
+    @Indexed
     private String username;
 
     private String password;
 
     @NotNull
     @Email
-    @Indexed(unique = true)
+    @Indexed
     private String email;
 
     private boolean anonymity = true;

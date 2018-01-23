@@ -3,8 +3,10 @@ package com.maxb.cominsight.controllers;
 import com.maxb.cominsight.config.exceptions.EntityNotFoundException;
 import com.maxb.cominsight.models.Gender;
 import com.maxb.cominsight.models.essential.Company;
+import com.maxb.cominsight.models.essential.Photo;
 import com.maxb.cominsight.models.essential.User;
 import com.maxb.cominsight.repositories.CompanyRepository;
+import com.maxb.cominsight.repositories.PhotoRepository;
 import com.maxb.cominsight.repositories.UserRepository;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -21,6 +23,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.io.IOException;
 import java.security.Principal;
+import java.time.LocalDateTime;
 import java.util.*;
 
 @RestController
@@ -35,6 +38,9 @@ public class LoginController {
 
     @Autowired
     private CompanyRepository companyRepository;
+
+    @Autowired
+    private PhotoRepository photoRepository;
 
     @Autowired
     private BCryptPasswordEncoder encoder;
@@ -63,6 +69,15 @@ public class LoginController {
         roles.add("USER");
         user.setRoles(roles);
         usersRepository.save(user);
+
+        for(int i = 0; i < 30; i++){
+            Photo photo = new Photo();
+            photo.setUser(user);
+            photo.setCompany(company);
+            photo.setCreated(LocalDateTime.now());
+            photo.setPhotoUrl("http://www.kino-teatr.ru/news/13642/128725.jpg");
+            photoRepository.save(photo);
+        }
     }
 
 

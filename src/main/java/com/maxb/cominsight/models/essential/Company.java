@@ -23,12 +23,12 @@ public class Company {
 
     @NotNull
     @Size(min = 2, max = 50)
-    @Indexed(unique = true)
+    @Indexed
     private String title = null;
 
     @NotNull
     @Email
-    @Indexed(unique = true)
+    @Indexed
     private String email = null;
 
     private String photoUrl = null;

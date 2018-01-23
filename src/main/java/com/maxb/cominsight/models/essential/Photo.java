@@ -21,11 +21,9 @@ public class Photo {
     @Id
     private String id;
 
-    @Indexed
     @NotNull
     private User user = null;
 
-    @Indexed
     @NotNull
     private Company company = null;
 

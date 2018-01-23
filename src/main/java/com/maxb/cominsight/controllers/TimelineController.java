@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.security.Principal;
@@ -19,7 +20,9 @@ public class TimelineController {
     private PhotoService photoService;
 
     @RequestMapping(value = "/timeline", method = RequestMethod.GET)
-    public Page<Photo> timeline(Principal principal) {
-        return photoService.getPhotos(0, 5);
+    public Page<Photo> timeline(@RequestParam( "page" ) int page,
+                                @RequestParam( "size" ) int size,
+                                Principal principal) {
+        return photoService.getPhotos(page, size);
     }
 }

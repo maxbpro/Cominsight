@@ -1,3 +1,9 @@
-<p>
-  home works!
-</p>
+
+<virtual-scroll [items]="buffer" (update)="scrollItems = $event"
+                (end)="fetchMore($event)">
+
+  <timeline-item *ngFor="let item of scrollItems" [item]="item"></timeline-item>
+
+  <div *ngIf="loading" class="loader">Loading...</div>
+
+</virtual-scroll>

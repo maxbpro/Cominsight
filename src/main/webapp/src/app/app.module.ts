@@ -21,6 +21,8 @@ import { CompanyComponent } from './company/company.component';
 import { CompanyEditComponent } from './company-edit/company-edit.component';
 import { UserEditComponent } from './user-edit/user-edit.component';
 import {TimelineService} from "./services/timeline.service";
+import {VirtualScrollModule} from "angular2-virtual-scroll";
+import { TimelineItemComponent } from './timeline-item/timeline-item.component';
 
 
 @NgModule({
@@ -33,13 +35,15 @@ import {TimelineService} from "./services/timeline.service";
     AlertComponent,
     CompanyComponent,
     CompanyEditComponent,
-    UserEditComponent
+    UserEditComponent,
+    TimelineItemComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     routing,
-    FormsModule
+    FormsModule,
+    VirtualScrollModule
   ],
   providers: [
     AuthGuard,
