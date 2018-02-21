@@ -3,25 +3,22 @@ package com.maxb.cominsight.controllers;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.maxb.cominsight.CominsightApplication;
 import com.maxb.cominsight.config.response.ResponseEnvelope;
-import com.maxb.cominsight.models.Comment;
+import com.maxb.cominsight.models.essential.Comment;
 import com.maxb.cominsight.models.Follower;
 import com.maxb.cominsight.models.essential.Company;
-import com.maxb.cominsight.models.essential.Photo;
+import com.maxb.cominsight.models.essential.Post;
 import com.maxb.cominsight.models.essential.User;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.skyscreamer.jsonassert.JSONAssert;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.context.embedded.LocalServerPort;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.http.*;
-import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.io.IOException;
@@ -87,7 +84,7 @@ public class CompanyControllerTestIT {
         mongoTemplate.dropCollection(Company.class);
         mongoTemplate.dropCollection(User.class);
         mongoTemplate.dropCollection(Comment.class);
-        mongoTemplate.dropCollection(Photo.class);
+        mongoTemplate.dropCollection(Post.class);
     }
 
     @Test
@@ -308,11 +305,11 @@ public class CompanyControllerTestIT {
 
         Company company = getCompany();
         User user =  getUser();
-        Photo photo = getPhotoObj(company, user);
+        Post post = getPhotoObj(company, user);
 
         ResponseEntity responseEntity = restTemplate.postForEntity(
                 createURLWithPort("/api/v1/companies/" + company.getId() + "/photos"),
-                photo, ResponseEnvelope.class);
+                post, ResponseEnvelope.class);
 
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
 
@@ -343,11 +340,11 @@ public class CompanyControllerTestIT {
     public void deletePhoto() throws IOException{
 
         Company company = getCompany();
-        Photo photo = getPhotoObj(company, getUser());
+        Post post = getPhotoObj(company, getUser());
 
         ResponseEntity responseEntity = restTemplate.postForEntity(
                 createURLWithPort("/api/v1/companies/" + company.getId() + "/photos"),
-                photo, ResponseEnvelope.class);
+                post, ResponseEnvelope.class);
 
         ResponseEnvelope envelope = (ResponseEnvelope)responseEntity.getBody();
         HashMap<String, Object> result = (HashMap<String, Object> )envelope.getResult();
@@ -361,13 +358,13 @@ public class CompanyControllerTestIT {
         assertEquals(HttpStatus.OK, response.getStatusCode());
     }
 
-    private Photo getPhotoObj(Company company, User user) {
+    private Post getPhotoObj(Company company, User user) {
 
-        Photo photo = new Photo();
-        photo.setCompany(company);
-        photo.setUser(user);
-        photo.setPhotoUrl("test url");
-        return photo;
+        Post post = new Post();
+        post.setCompany(company);
+        post.setUser(user);
+        post.setPhotoUrl("test url");
+        return post;
     }
 
     @Test
@@ -375,12 +372,12 @@ public class CompanyControllerTestIT {
 
         Company company = getCompany();
         User user =  getUser();
-        Photo photo = getPhoto(company, user);
+        Post post = getPhoto(company, user);
 
-        Comment comment = getCommentObj(user, photo);
+        Comment comment = getCommentObj(user, post);
 
         ResponseEntity responseEntity = restTemplate.postForEntity(
-                createURLWithPort("/api/v1/companies/" + company.getId() +"/photos/"+ photo.getId() + "/comments"),
+                createURLWithPort("/api/v1/companies/" + company.getId() +"/photos/"+ post.getId() + "/comments"),
                 comment, ResponseEnvelope.class);
 
         ResponseEnvelope envelope = (ResponseEnvelope)responseEntity.getBody();
@@ -405,12 +402,12 @@ public class CompanyControllerTestIT {
 
         Company company = getCompany();
         User user =  getUser();
-        Photo photo = getPhoto(company, user);
+        Post post = getPhoto(company, user);
 
-        Comment comment = getCommentObj(user, photo);
+        Comment comment = getCommentObj(user, post);
 
         ResponseEntity responseEntity = restTemplate.postForEntity(
-                createURLWithPort("/api/v1/companies/" + company.getId() +"/photos/"+ photo.getId() + "/comments"),
+                createURLWithPort("/api/v1/companies/" + company.getId() +"/photos/"+ post.getId() + "/comments"),
                 comment, ResponseEnvelope.class);
 
         ResponseEnvelope envelope = (ResponseEnvelope)responseEntity.getBody();
@@ -420,40 +417,40 @@ public class CompanyControllerTestIT {
         String commentId = comments.get(0).get("id").toString();
 
         ResponseEntity<ResponseEnvelope> response = restTemplate.exchange(
-                createURLWithPort("/api/v1/companies/" + company.getId() +"/photos/"+ photo.getId() + "/comments/" + commentId),
+                createURLWithPort("/api/v1/companies/" + company.getId() +"/photos/"+ post.getId() + "/comments/" + commentId),
                 HttpMethod.DELETE, null, ResponseEnvelope.class);
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
 
     }
 
-    private Comment getCommentObj(User user, Photo photo){
+    private Comment getCommentObj(User user, Post post){
         Comment comment = new Comment();
         comment.setText("test text");
         comment.setUser(user);
-        comment.setPhoto(photo);
+        comment.setPhoto(post);
         return comment;
     }
 
-    private Photo getPhoto(Company company, User user){
+    private Post getPhoto(Company company, User user){
 
-        Photo photoObj = getPhotoObj(company, user);
+        Post postObj = getPhotoObj(company, user);
 
         ResponseEntity responseEntity =  restTemplate.postForEntity(
                 createURLWithPort("/api/v1/companies/" + company.getId() + "/photos"),
-                photoObj, ResponseEnvelope.class);
+                postObj, ResponseEnvelope.class);
 
         ResponseEnvelope envelope = (ResponseEnvelope)responseEntity.getBody();
         HashMap<String, Object> result = (HashMap<String, Object> )envelope.getResult();
 
-        Photo photo = new Photo();
-        photo.setUser (user);
-        photo.setCompany(company);
+        Post post = new Post();
+        post.setUser (user);
+        post.setCompany(company);
 
         List<HashMap<String, Object>> photos = (List<HashMap<String, Object>>)result.get("photos");
-        photo.setId(photos.get(0).get("id").toString());
+        post.setId(photos.get(0).get("id").toString());
 
-        return photo;
+        return post;
     }
 
 

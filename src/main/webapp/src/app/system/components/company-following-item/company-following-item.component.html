@@ -1,0 +1,28 @@
+
+
+<!-- Box Item Start -->
+<div class="box--item text-center" *ngIf="loaded">
+  <a [routerLink]="['/system','company', following.companyId]" class="img" data-overlay="0.1">
+    <img [src]="following.companyPhotoUrl" alt="">
+  </a>
+
+  <div class="info">
+
+    <div class="title">
+      <h2 class="h6"><a [routerLink]="['/system','company', following.companyId]">{{following.companyTitle}}</a></h2>
+    </div>
+
+    <!--<div class="meta">-->
+    <!--<p><i class="fa mr&#45;&#45;8 fa-user-o"></i>{{company.category}} / {{0}} Members</p>-->
+    <!--</div>-->
+
+    <!--<div class="desc text-darker">-->
+    <!--<p>{{company.text}}</p>-->
+    <!--</div>-->
+
+    <div class="action">
+      <a [routerLink]="['/system','company', following.companyId]">Company Details<i class="fa ml--10 fa-caret-right"></i></a>
+    </div>
+  </div>
+</div>
+<!-- Box Item End -->

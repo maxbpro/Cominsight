@@ -28,6 +28,8 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-security')
     compile('org.springframework.boot:spring-boot-starter-validation')
     compile('org.springframework.boot:spring-boot-starter-web')
+    compile 'org.springframework.boot:spring-boot-starter-mail:1.4.3.RELEASE'
+
     compileOnly('org.projectlombok:lombok')
     testCompile('org.springframework.boot:spring-boot-starter-test')
     testCompile('org.springframework.security:spring-security-test')
@@ -38,7 +40,11 @@ dependencies {
     compile("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.8.1")
 
     compile 'io.springfox:springfox-swagger2:2.7.0'
+    compile 'org.modelmapper:modelmapper:0.7.4'
+
+    compile 'org.imgscalr:imgscalr-lib:4.2'
 }
+
 
 springBoot {
     executable = true

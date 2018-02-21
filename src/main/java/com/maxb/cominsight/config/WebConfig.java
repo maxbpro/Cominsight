@@ -32,7 +32,10 @@ public class WebConfig extends WebSecurityConfigurerAdapter {
         web.ignoring()
                 .antMatchers(HttpMethod.OPTIONS,"/**")
                 .antMatchers("/", "/vendor/**", "/css/**", "/js/**", "/img/**", "/lib/**",
-                        "/modules/**", "/app/**", "/static/**", "/api/v1/authenticate", "/api/v1/register","/api/v1/companies","/favicon.ico", "/index.html");
+                        "/modules/**", "/app/**", "/static/**", "/api/v1/authenticate",
+                        "/api/v1/register","/api/v1/companies", "/api/v1/companies/search/*",
+                        "/api/v1/user/updatePassword", "/api/v1/registrationConfirm/*", "/api/v1/reset",
+                        "/favicon.ico", "/index.html");
     }
 
 
@@ -40,7 +43,6 @@ public class WebConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
              http
-
                 // adding JWT filter
                 .addFilterBefore(new JWTFilter(), UsernamePasswordAuthenticationFilter.class)
                 // enabling the basic authentication

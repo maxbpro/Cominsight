@@ -1,0 +1,35 @@
+
+<div *ngIf="loaded">
+
+  <!-- Filter Nav Start -->
+  <div class="filter--nav pb--50 clearfix">
+    <div class="filter--links float--left">
+      <ul class="nav ff--primary">
+        <li class="active"><a href="#">All ( {{page.totalElements}})</a></li>
+        <li><a href="#">Photos (0)</a></li>
+        <li><a href="#">Videos (0)</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="gallery--items">
+    <div class="row gutter--15 AdjustRow"  *ngFor="let post of posts">
+      <app-media-item [post]="post"></app-media-item>
+    </div>
+  </div>
+
+  <!-- Page Count Start -->
+  <div class="page--count pt--30">
+    <label class="ff--primary fs--14 fw--500 text-darker">
+      <span>Viewing</span>
+
+      <a (click)="movePrev()" class="btn-link"><i class="fa fa-caret-left"></i></a>
+      <input type="number" name="page-count" [value]="page.currentPage + 1" class="form-control form-sm">
+      <a (click)="moveNext()" class="btn-link"><i class="fa fa-caret-right"></i></a>
+
+      <span>of {{page.totalPages}}</span>
+    </label>
+  </div>
+
+
+</div>

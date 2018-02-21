@@ -1,0 +1,68 @@
+<li>
+  <!-- Comment Item Start -->
+  <div class="comment--item mr--15 clearfix">
+    <div class="img float--left" data-overlay="0.3" data-overlay-color="primary">
+      <img [src]="comment.member.avatar" alt="">
+    </div>
+
+    <div class="info ov--h">
+      <div class="header clearfix">
+        <div class="meta float--left">
+          <p class="fs--14 fw--700 text-darkest">
+            <a [routerLink]="['/system', 'member', comment.member.id]">{{comment.member.firstName}} {{comment.member.lastName}}</a>
+          </p>
+
+          <p>
+            <i class="mr--10 fa fa-clock-o"></i>
+            <span>{{comment.created | appMoment}}</span>
+          </p>
+        </div>
+
+        <div class="reply text-darker float--right">
+          <a (click)="replayClicked()" class="btn btn-default">Reply</a>
+        </div>
+      </div>
+
+      <div class="content pt--8 fs--14">
+
+        <p>{{comment.text}}</p>
+      </div>
+    </div>
+  </div>
+  <!-- Comment Item End -->
+
+  <div class="myalert alert-{{error.type}}" role="alert" *ngIf="error">
+    <strong>Error!</strong> {{error.debugMessage}}
+  </div>
+
+  <ul class="comment--items nav" *ngFor="let replay of replays">
+    <app-comment-replay-item [replay]="replay"></app-comment-replay-item>
+  </ul>
+
+  <!-- Replay Form Start -->
+  <div class="comment--form pb--30" data-form="validate" *ngIf="showReplayView">
+
+    <form name="form" (ngSubmit)="f.form.valid && sendReplay()" #f="ngForm" novalidate>
+
+      <div class="row gutter--15">
+
+        <div class="header clearfix">
+          <div class="reply text-darker float--right mr--20 mb--10">
+            <input type="text" name="text" placeholder="Replay" class="form-control"
+                   [(ngModel)]="replay.text" #text="ngModel" required>
+          </div>
+        </div>
+
+        <div class="header clearfix">
+          <div class="reply text-darker float--right mr--20">
+            <button [disabled]="loading" class="btn btn-default">Post Replay</button>
+          </div>
+        </div>
+
+
+      </div>
+    </form>
+  </div>
+  <!-- Replay Form End -->
+
+</li>

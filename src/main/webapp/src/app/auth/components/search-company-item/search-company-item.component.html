@@ -1,0 +1,66 @@
+
+<!--<section class="section pt&#45;&#45;70 pb&#45;&#45;40">-->
+  <!--<div class="container">-->
+    <!--&lt;!&ndash; Section Title Start &ndash;&gt;-->
+    <!--<div class="section&#45;&#45;title pb&#45;&#45;50 text-center">-->
+      <!--<div class="title">-->
+        <!--<h2 class="h2">Want to check if your Company exists?</h2>-->
+      <!--</div>-->
+
+      <!--<div class="sub-title">-->
+        <!--<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has industry's.</p>-->
+        <!--<div class="search&#45;&#45;widget" data-form="validate">-->
+          <!--<form action="#">-->
+            <!--<input type="text" name="search" placeholder="Search" class="form-control" required>-->
+
+            <!--<button type="submit" class="btn-link"><i class="fa fa-search"></i></button>-->
+          <!--</form>-->
+        <!--</div>-->
+
+      <!--</div>-->
+    <!--</div>-->
+
+  <!--</div>-->
+<!--</section>-->
+
+
+<section class="section pt--70 pb--40">
+  <div class="container">
+    <!-- Section Title Start -->
+    <div class="section--title pb--50 text-center">
+      <div class="title">
+        <h2 class="h2">Want to check if your Company exists?</h2>
+      </div>
+
+      <div class="sub-title">
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has industry's.</p>
+        <div class="search--widget" data-form="validate">
+
+          <form action="#">
+            <input type="text" name="country" placeholder="Search" class="form-control validate filter-input"
+                   [(ngModel)]=query (keyup)=filter()>
+
+            <button type="submit" class="btn-link"><i class="fa fa-search"></i></button>
+          </form>
+
+          <div class="suggestions" *ngIf="filteredList.length > 0">
+            <ul  *ngFor="let company of filteredList" >
+              <li >
+                <div class="suggestion">
+                  <a (click)="select(item)">{{company.title}}</a>
+                </div>
+
+              </li>
+            </ul>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+

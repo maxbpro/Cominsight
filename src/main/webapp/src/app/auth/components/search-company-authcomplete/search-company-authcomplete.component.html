@@ -1,0 +1,19 @@
+
+
+
+<input type="text" name="country" placeholder="Company *" class="form-control validate filter-input"
+       [(ngModel)]=query (keyup)=filter()>
+
+<div class="suggestions" *ngIf="filteredList.length > 0">
+  <ul  *ngFor="let company of filteredList" >
+    <li >
+      <div class="suggestion">
+        <a (click)="select(company)">{{company.title}}</a>
+      </div>
+
+    </li>
+  </ul>
+
+
+
+</div>

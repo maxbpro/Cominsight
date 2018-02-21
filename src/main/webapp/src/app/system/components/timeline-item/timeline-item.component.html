@@ -1,0 +1,75 @@
+<div class="col-sm-12 pb--30">
+  <!-- Post Item Start -->
+  <div class="post--item" data-scroll-reveal="bottom">
+    <!-- Post Image Start -->
+    <div class="post--img">
+      <a [routerLink]="['/system', 'post', post.id]"><img [src]="post.photoUrl" alt=""></a>
+    </div>
+    <!-- Post Image End -->
+
+    <!-- Post Info Start -->
+    <div class="post--info">
+      <!-- Post Meta Start -->
+      <div class="post--meta">
+        <ul class="nav">
+          <li>
+            <a [routerLink]="['/system', 'member', post.member.id]">
+              <img [src]="post.member.avatar" alt="">
+              <span>{{post.member.firstName}} {{post.member.lastName}}</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="mr--8 fa fa-calendar-o"></i>
+              <span>{{post.date | appMoment}}</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="mr--8 fa fa-comments-o"></i>
+              <span>{{post.commentsCount}} Comments</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <!-- Post Meta End -->
+
+      <!-- Post Title Start -->
+      <div class="post--title mt--10">
+        <h3 class="h6">
+          <a [routerLink]="['/system', 'post', post.id]" class="btn-link">{{post.title}}</a>
+        </h3>
+      </div>
+      <!-- Post Title End -->
+
+      <!-- Post Meta Start -->
+      <div class="post--meta">
+        <ul class="nav">
+          <li>
+            <i class="mr--8 fa fa-folder-open-o"></i>
+            <a href="#"><span>{{post.category}}</span></a>
+          </li>
+          <li>
+            <i class="mr--8 fa fa-tags"></i>
+            <a href="#" *ngFor="let tag of post.tags"><span>{{tag}}</span></a>
+          </li>
+        </ul>
+      </div>
+      <!-- Post Meta End -->
+
+      <!-- Post Content Start -->
+      <div class="post--content text-darker mt--10">
+        <p>{{post.text}}</p>
+      </div>
+      <!-- Post Content End -->
+
+      <!-- Post Action Start -->
+      <div class="post--action text-darkest mt--8">
+        <a [routerLink]="['/system', 'post', '']"  class="btn-link">Continue Reading<i class="ml--10 text-primary fa fa-caret-right"></i></a>
+      </div>
+      <!-- Post Action End -->
+    </div>
+    <!-- Post Info End -->
+  </div>
+  <!-- Post Item End -->
+</div>

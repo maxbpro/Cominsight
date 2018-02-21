@@ -1,0 +1,73 @@
+
+
+<div class="col-md-6 col-xs-12 pt--20" >
+
+
+  <!-- Post Item Start -->
+  <div class="post--item" data-scroll-reveal="bottom">
+
+    <!-- Post Info Start -->
+    <div class="post--info">
+      <!-- Post Meta Start -->
+      <div class="post--meta">
+        <ul class="nav">
+          <li>
+            <a [routerLink]="['/system', 'member', blog.member.id]">
+              <img [src]="blog.member.avatar" alt="">
+              <span>{{blog.member.firstName}} {{blog.member.lastName}}</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="mr--8 fa fa-calendar-o"></i>
+              <span>{{blog.created | appMoment}}</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="mr--8 fa fa-comments-o"></i>
+              <span>{{blog.commentsCount}} Comments</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <!-- Post Meta End -->
+
+      <!-- Post Title Start -->
+      <div class="post--title mt--10">
+        <h3 class="h6">
+          <a [routerLink]="['/system', 'blog', blog.id]" class="btn-link">{{blog.title}}</a>
+        </h3>
+      </div>
+      <!-- Post Title End -->
+
+      <!-- Post Meta Start -->
+      <div class="post--meta">
+        <ul class="nav">
+          <li>
+            <i class="mr--8 fa fa-tags"></i>
+            <a href="#" *ngFor="let tag of blog.tags"><span>{{tag}}</span></a>
+          </li>
+        </ul>
+      </div>
+      <!-- Post Meta End -->
+
+      <!-- Post Content Start -->
+      <div class="post--content text-darker mt--10">
+        <p>{{blog.text}}</p>
+      </div>
+      <!-- Post Content End -->
+
+      <!-- Post Action Start -->
+      <div class="post--action text-darkest mt--8">
+        <a [routerLink]="['/system', 'blog', blog.id]" class="btn-link">Continue Reading<i class="ml--10 text-primary fa fa-caret-right"></i></a>
+      </div>
+      <!-- Post Action End -->
+    </div>
+    <!-- Post Info End -->
+
+  </div>
+  <!-- Post Item End -->
+
+
+</div>

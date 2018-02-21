@@ -1,0 +1,209 @@
+
+
+<div class="myalert alert-{{error.type}}" role="alert" *ngIf="error">
+  <strong>Error!</strong> {{error.debugMessage}}
+</div>
+
+<section class="page--wrapper pt--80 pb--20" *ngIf="loaded">
+  <div class="container">
+    <div class="row">
+      <!-- Main Content Start -->
+      <div class="main--content col-md-8 pb--30" data-trigger="stickyScroll">
+        <div class="main--content-inner">
+          <!-- Post Item Start -->
+          <div class="post--item post--single pb--30">
+            <!-- Post Image Start -->
+            <div class="post--img">
+              <img [src]="post.photoUrl" alt="">
+            </div>
+            <!-- Post Image End -->
+
+            <!-- Post Info Start -->
+            <div class="post--info">
+              <!-- Post Meta Start -->
+              <div class="post--meta">
+                <ul class="nav">
+                  <li>
+                    <a href="#">
+                      <i class="mr--8 fa fa-calendar-o"></i>
+                      <span>{{post.created | appMoment}}</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <i class="mr--8 fa fa-comments-o"></i>
+                      <span>{{post.commentsCount}} Comments</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="post--content text-darker mt--10">
+                <p>{{post.text}}</p>
+              </div>
+
+
+              <!-- Post Footer Start -->
+              <div class="post--footer">
+                <div class="row">
+                  <div class="col-sm-6">
+                    <!-- Post Meta Start -->
+                    <div class="post--meta">
+                      <ul class="nav">
+                        <li>
+                          <i class="mr--8 fa fa-folder-open-o"></i>
+                          <a href="#"><span>{{post.category}}</span></a>
+                        </li>
+
+                        <li>
+                          <i class="mr--8 fa fa-tags"></i>
+                          <a href="#" *ngFor="let tag of post.tags"><span>{{tag}}</span></a>
+                        </li>
+
+                      </ul>
+                    </div>
+                    <!-- Post Meta End -->
+                  </div>
+
+                  <div class="col-sm-6">
+                    <!-- Post Social Start -->
+                    <div class="post--social-share clearfix">
+                      <ul class="nav">
+                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                        <li><a href="#"><i class="fa fa-pinterest-p"></i></a></li>
+                      </ul>
+                    </div>
+                    <!-- Post Social End -->
+                  </div>
+                </div>
+              </div>
+              <!-- Post Footer End -->
+            </div>
+            <!-- Post Info End -->
+          </div>
+          <!-- Post Item End -->
+
+
+
+          <!-- Post Author Start -->
+          <div class="post--author pt--20 pb--30">
+            <div class="post--author-inner clearfix" data-bg-img="img/posts-img/author-bg.png">
+              <div class="img mr--30 text-black text-center float--left">
+                <img [src]="post.member.avatar" alt="">
+
+                <p><a [routerLink]="['/system','member', post.member.id]" class="btn-link">{{post.member.firstName}} {{post.member.lastName}}</a></p>
+              </div>
+
+              <div class="info ov--h fs--14 pt--8">
+                <div class="desc fw--500 fstyle--i">
+                  <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto.</p>
+                </div>
+
+                <div class="social text-gray">
+                  <ul class="nav">
+                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                    <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Post Author End -->
+
+          <!-- Post Nav Start -->
+          <div class="post--nav pt--20 pb--20">
+            <div class="row">
+              <div class="col-sm-6">
+                <!-- Post Nav Item Start -->
+                <a href="#" class="post--nav-item prev ff--primary fs--14 fw--500 text-darker">
+                  <p class="mb--0"><i class="text-primary mr--10 fa fa-caret-left"></i>Newer Post</p>
+                </a>
+                <!-- Post Nav Item End -->
+              </div>
+
+              <div class="col-sm-6">
+                <!-- Post Nav Item Start -->
+                <a href="#" class="post--nav-item next ff--primary fs--14 fw--500 text-darker text-right">
+                  <p class="mb--0">Older Post<i class="text-primary ml--10 fa fa-caret-right"></i></p>
+                </a>
+                <!-- Post Nav Item End -->
+              </div>
+            </div>
+          </div>
+          <!-- Post Nav End -->
+
+          <!-- Comment List Start -->
+          <div class="comment--list pt--40">
+            <h4 class="h4 pb--20">{{post.commentsCount}} Comments</h4>
+
+            <div *ngIf="commentsLoaded">
+
+              <ul class="comment--items nav" *ngFor="let comment of comments">
+                <app-comment-item [comment]="comment"></app-comment-item>
+              </ul>
+
+            </div>
+
+          </div>
+
+          <!-- Comment Form Start -->
+          <div class="comment--form pb--30" data-form="validate">
+            <h4 class="h4 pb--15">Leave A Comment</h4>
+
+            <!--<p class="ff&#45;&#45;primary fs&#45;&#45;14 text-darkest pb&#45;&#45;10">Don’t worry ! your e-mail address will not published.</p>-->
+
+            <form name="form" (ngSubmit)="f.form.valid && register()" #f="ngForm" novalidate>
+              <div class="row gutter--15">
+
+                <div class="col-sm-12">
+                  <div class="form-group">
+                    <textarea name="comment" placeholder="Comment" class="form-control"
+                              [(ngModel)]="currentComment.text" #text="ngModel" required>
+
+                    </textarea>
+                  </div>
+                </div>
+
+                <div class="col-sm-12 pt--10">
+                  <button (click)="createComment()" [disabled]="creatingComment"
+                          class="btn btn-sm btn-primary fs--14">Post Comment</button>
+                </div>
+              </div>
+            </form>
+          </div>
+          <!-- Comment Form End -->
+        </div>
+      </div>
+      <!-- Main Content End -->
+
+      <!-- Main Sidebar Start -->
+      <div class="main--sidebar col-md-4 pb--60" data-trigger="stickyScroll">
+
+
+        <div class="widget">
+          <app-notice-item></app-notice-item>
+        </div>
+
+
+
+        <div class="widget">
+          <h2 class="h4 fw--700 widget--title">Company</h2>
+          <div class="text--widget">
+            <app-company-item [company]="post.company"></app-company-item>
+          </div>
+        </div>
+
+        <div class="widget">
+          <app-advertisements-item></app-advertisements-item>
+        </div>
+
+      </div>
+      <!-- Main Sidebar End -->
+    </div>
+  </div>
+</section>
+<!-- Page Wrapper End -->

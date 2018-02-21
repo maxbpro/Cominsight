@@ -1,0 +1,49 @@
+<section class="page--wrapper pt--80 pb--20">
+  <div class="container">
+    <div class="row">
+
+      <!-- Main Content Start -->
+      <div class="main--content col-md-8 col-md-offset-2 pb--60" data-trigger="stickyScroll">
+        <div class="main--content-inner drop--shadow">
+
+
+          <!-- Gallery Header Start -->
+          <div class="gallery--header pb--15 clearfix">
+            <div class="gallery--title float--left">
+              <h3 class="h3 fw--500 text-default">Media Gallery</h3>
+            </div>
+
+            <div class="gallery--upload-btn ff--primary float--right">
+              <a [routerLink]="['/system', 'new_post']" class="btn btn-sm btn-default"><i class="mr--10 fa fa-cloud-upload"></i>Upload</a>
+            </div>
+          </div>
+          <!-- Gallery Header End -->
+
+
+          <div class="myalert alert-{{error.type}}" role="alert" *ngIf="error">
+            <strong>Error!</strong> {{error.debugMessage}}
+          </div>
+
+          <!-- Gallery Items Start -->
+          <div class="gallery--items" *ngIf="loaded">
+            <div class="row gutter--15 AdjustRow" *ngFor="let post of posts">
+              <app-timeline-item [post]="post"></app-timeline-item>
+            </div>
+          </div>
+          <!-- Gallery Items End -->
+        </div>
+
+        <!-- Load More Button Start -->
+        <div class="load-more--btn pt--30 text-center" *ngIf="!isLastPage">
+          <button (click)="onLoadMore()" class="btn btn-animate">
+            <span>See More Media<i class="fa ml--10 fa-caret-right"></i></span>
+          </button>
+        </div>
+        <!-- Load More Button End -->
+      </div>
+      <!-- Main Content End -->
+
+
+    </div>
+  </div>
+</section>

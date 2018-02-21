@@ -1,0 +1,35 @@
+
+
+<li>
+  <!-- Comment Item Start -->
+  <div class="comment--item mr--15 clearfix">
+    <div class="img float--left" data-overlay="0.3" data-overlay-color="primary">
+      <img [src]="replay.member.avatar" alt="">
+    </div>
+
+    <div class="info ov--h">
+      <div class="header clearfix">
+        <div class="meta float--left">
+          <p class="fs--14 fw--700 text-darkest">
+            <a [routerLink]="['/system', 'member', replay.member.id]">{{replay.member.firstName}} {{replay.member.lastName}}</a>
+          </p>
+
+          <p>
+            <i class="mr--10 fa fa-clock-o"></i>
+            <span>{{replay.created | appMoment}}</span>
+          </p>
+        </div>
+
+        <!--<div class="reply text-darker float&#45;&#45;right">-->
+          <!--<a href="#" class="btn btn-default">Reply</a>-->
+        <!--</div>-->
+      </div>
+
+      <div class="content pt--8 fs--14">
+        <p>{{replay.text}}</p>
+      </div>
+    </div>
+
+  </div>
+  <!-- Comment Item End -->
+</li>

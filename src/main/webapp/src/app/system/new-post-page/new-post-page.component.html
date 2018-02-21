@@ -1,0 +1,165 @@
+
+
+<!-- Page Wrapper Start -->
+<section class="page--wrapper pt--80 pb--20">
+  <div class="container">
+    <div class="row">
+
+      <div class="main--content col-md-8 pb--30" data-trigger="stickyScroll">
+
+        <div class="myalert alert-{{error.type}}" role="alert" *ngIf="error">
+          <strong>Error!</strong> {{error.debugMessage}}
+        </div>
+
+        <!-- success view -->
+        <div class="myalert alert-success" role="alert" *ngIf="success">
+          <strong>Success!</strong> Post has been sent
+        </div>
+
+        <form name="form" (ngSubmit)="f.form.valid && createPost()" #f="ngForm" novalidate>
+
+          <div class="main--content-inner">
+            <!-- Post Item Start -->
+            <div class="post--item post--single pb--30">
+              <!-- Post Image Start -->
+              <div class="post--img">
+                <!--<img [src]="post.photoUrl" alt="">-->
+              </div>
+              <!-- Post Image End -->
+
+              <!-- Post Info Start -->
+              <div class="post--info">
+
+                <div class="post--meta">
+                  <ul class="nav">
+                    <li>
+                      <a href="#">
+                        <i class="mr--8 fa fa-calendar-o"></i>
+                        <span>{{currentDate | appMoment}}</span>
+                      </a>
+                    </li>
+
+                  </ul>
+                </div>
+
+                <div class="post--content text-darker mt--10">
+                  <ng2-file-input [drop-text]="''" [show-previews]="true" (onAction)="onPhotoAction($event)" ></ng2-file-input>
+                  <div *ngIf="f.submitted && !file" class="help-block">Image is required</div>
+
+                </div>
+
+
+                <div class="post--content text-darker mt--10">
+                  <input type="text"  placeholder="Title *" class="form-control"
+                         name="title" [(ngModel)]="post.title" #title="ngModel" required>
+                  <div *ngIf="f.submitted && !title.valid" class="help-block">Title is required</div>
+                </div>
+
+                <div class="post--content text-darker mt--10">
+                  <input type="text" placeholder="Text *" class="form-control"
+                         name="text" [(ngModel)]="post.text" #text="ngModel" required>
+                  <div *ngIf="f.submitted && !text.valid" class="help-block">Text is required</div>
+                </div>
+
+                <div class="post--content text-darker mt--10">
+                  <input type="text"  placeholder="tag1, tag2" class="form-control"
+                         name="tagsString" [(ngModel)]="post.tagsString" #tagsString="ngModel">
+                </div>
+
+
+
+                <div class="post--content text-darker mt--10">
+
+                  <select
+                    class="form-control form-sm" id="category" required
+                    [(ngModel)]="post.category" #category="ngModel"
+                    [ngModel]="1"
+                    name="category">
+                    <option
+                      *ngFor="let category of categories" [value]="category">
+                      {{category}}
+                    </option>
+                  </select>
+
+                  <div *ngIf="f.submitted && !post.category" class="help-block">Category is required</div>
+
+                </div>
+
+
+
+
+              </div>
+              <!-- Post Info End -->
+            </div>
+            <!-- Post Item End -->
+
+
+
+            <div class="post--author pt--20 pb--30">
+              <div class="post--author-inner clearfix" data-bg-img="img/posts-img/author-bg.png">
+                <div class="img mr--30 text-black text-center float--left">
+                  <img [src]="member.avatar" alt="">
+
+                  <p><a class="btn-link">{{member.firstName}} {{member.lastName}}</a></p>
+                </div>
+
+                <div class="info ov--h fs--14 pt--8">
+                  <div class="desc fw--500 fstyle--i">
+                    <p>{{member.text}}</p>
+                  </div>
+
+                  <div class="social text-gray">
+                    <ul class="nav">
+                      <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                      <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                      <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                      <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+            <div class="load-more--btn pt--30 text-center" >
+              <button [disabled]="loading" class="btn btn-animate">
+                <span>Post<i class="fa ml--10 fa-caret-right"></i></span>
+              </button>
+            </div>
+
+
+          </div>
+        </form>
+
+
+      </div>
+
+
+      <!-- Main Sidebar Start -->
+      <div class="main--sidebar col-md-4 pb--60" data-trigger="stickyScroll">
+
+
+        <div class="widget">
+          <app-notice-item></app-notice-item>
+        </div>
+
+
+
+        <div class="widget">
+          <h2 class="h4 fw--700 widget--title">Company</h2>
+          <div class="text--widget">
+            <app-company-item [company]="member.company"></app-company-item>
+          </div>
+        </div>
+
+        <div class="widget">
+          <app-advertisements-item></app-advertisements-item>
+        </div>
+
+      </div>
+      <!-- Main Sidebar End -->
+    </div>
+  </div>
+</section>
+<!-- Page Wrapper End -->

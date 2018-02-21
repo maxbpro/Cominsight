@@ -1,0 +1,39 @@
+
+
+<div *ngIf="loaded">
+
+  <div class="filter--nav pb--30 clearfix">
+    <div class="filter--link float--left">
+      <h2 class="h4">All Companies : {{companies.length}}</h2>
+    </div>
+  </div>
+
+
+  <!-- Box Items Start -->
+  <div class="box--items">
+    <div class="row gutter--15 AdjustRow">
+
+      <div class="col-md-3 col-xs-6 col-xxs-12"  *ngFor="let following of companies">
+        <app-company-following-item [following]="following"></app-company-following-item>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Page Count Start -->
+  <!--<div class="page&#45;&#45;count pt&#45;&#45;30">-->
+    <!--<label class="ff&#45;&#45;primary fs&#45;&#45;14 fw&#45;&#45;500 text-darker">-->
+      <!--<span>Viewing</span>-->
+
+      <!--<a (click)="movePrev()" class="btn-link"><i class="fa fa-caret-left"></i></a>-->
+      <!--<input type="number" name="page-count" [value]="page.currentPage + 1" class="form-control form-sm">-->
+      <!--<a (click)="moveNext()" class="btn-link"><i class="fa fa-caret-right"></i></a>-->
+
+      <!--<span>of {{page.totalPages}}</span>-->
+    <!--</label>-->
+  <!--</div>-->
+
+
+</div>
+
+

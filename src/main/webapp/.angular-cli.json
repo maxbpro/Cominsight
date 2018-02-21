@@ -9,7 +9,11 @@
       "outDir": "dist",
       "assets": [
         "assets",
-        "favicon.ico"
+        "img",
+        "js",
+        "css",
+        "fonts",
+        "favicon.png"
       ],
       "index": "index.html",
       "main": "main.ts",
@@ -19,7 +23,9 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "styles.css"
+        "styles.css",
+        "style.css",
+        "ng2-file-upload-style.css"
       ],
       "scripts": [],
       "environmentSource": "environments/environment.ts",

@@ -1,0 +1,31 @@
+
+<div *ngIf="loaded">
+
+  <div class="filter--nav pb--30 clearfix">
+    <div class="filter--link float--left">
+      <h2 class="h4">All Blogs :  {{page.totalElements}}</h2>
+    </div>
+  </div>
+
+
+  <div class="box--items">
+    <div class="row gutter--15 AdjustRow" *ngFor="let blog of blogs">
+      <app-blog-item [blog]="blog"></app-blog-item>
+    </div>
+  </div>
+
+
+  <!-- Page Count Start -->
+  <div class="page--count pt--30">
+    <label class="ff--primary fs--14 fw--500 text-darker">
+      <span>Viewing</span>
+
+      <a (click)="movePrev()" class="btn-link"><i class="fa fa-caret-left"></i></a>
+      <input type="number" name="page-count" [value]="page.currentPage + 1" class="form-control form-sm">
+      <a (click)="moveNext()" class="btn-link"><i class="fa fa-caret-right"></i></a>
+
+      <span>of {{page.totalPages}}</span>
+    </label>
+  </div>
+
+</div>

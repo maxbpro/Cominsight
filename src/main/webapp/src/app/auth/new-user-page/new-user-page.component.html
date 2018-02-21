@@ -1,0 +1,161 @@
+<section class="banner--section">
+  <!-- Banner Slider Start -->
+  <div class="banner--slider owl-carousel" data-owl-loop="false">
+    <!-- Banner Item Start -->
+    <div class="banner--item" data-bg-img="img/banner-img/home-version-3/slider-bg-01.jpg" data-overlay="0.5">
+      <div class="vc--parent">
+        <div class="vc--child">
+          <div class="container">
+            <div class="row row--md-vc">
+              <div class="col-md-7">
+                <!-- Banner Content Start -->
+                <div class="banner--content pt--70 pb--80">
+                  <div class="title">
+                    <h1 class="h2 text-white">Welcome To Community</h1>
+                  </div>
+
+                  <div class="sub-title">
+                    <h2 class="h1 text-white">Connect, Share &amp; Engage</h2>
+                  </div>
+
+                  <div class="desc fs--16">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum aspernatur repudiandae praesentium, accusantium quo eaque porro ut at corporis, ipsa omnis vero minima aliquam nulla, eos dolorem provident, deserunt asperiores!</p>
+                  </div>
+
+                  <div class="action text-uppercase">
+                    <a [routerLink]="['/', 'new_user']" class="btn btn-white">New User</a>
+                    <a [routerLink]="['/', 'login']" class="btn btn-primary">Sign in</a>
+                  </div>
+                </div>
+                <!-- Banner Content End -->
+              </div>
+
+              <div class="col-md-4 col-md-offset-1 col-xs-8 col-xs-offset-2 col-xxs-12">
+                <!-- Widget Start -->
+                <div class="widget">
+                  <h2 class="h4 fw--700 widget--title">Sign up</h2>
+
+
+                  <div class="myalert alert-{{error.type}}" role="alert" *ngIf="error">
+                    <strong>Error!</strong> {{error.debugMessage}}
+                  </div>
+
+                  <div class="buddy-finder--widget">
+                    <form name="form" (ngSubmit)="f.form.valid && register()" #f="ngForm" novalidate>
+
+                      <div class="row">
+
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label>
+                              <span class="text-darker ff--primary fw--500">Company</span>
+
+                              <app-search-company-authcomplete (onCompanySelected)="companySelected($event)" ></app-search-company-authcomplete>
+                              <div *ngIf="f.submitted && !company" class="help-block">Company is required</div>
+
+                            </label>
+                          </div>
+                        </div>
+
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label>
+                              <span class="text-darker ff--primary fw--500">Email</span>
+                              <input type="email" placeholder="Email *" class="form-control"
+                                     name="email" [(ngModel)]="user.email" #email="ngModel" required>
+                              <div *ngIf="f.submitted && !email.valid" class="help-block">Email is required</div>
+                            </label>
+                          </div>
+                        </div>
+
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label>
+                              <span class="text-darker ff--primary fw--500">Username</span>
+                              <input type="text" placeholder="Username *" class="form-control"
+                                     name="username" [(ngModel)]="user.username" #username="ngModel" required>
+                              <div *ngIf="f.submitted && !username.valid" class="help-block">Username is required</div>
+                            </label>
+                          </div>
+                        </div>
+
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label>
+                              <span class="text-darker ff--primary fw--500">First Name</span>
+                              <input type="text" placeholder="First Name *" class="form-control"
+                                     name="firstName" [(ngModel)]="user.firstName" #firstName="ngModel" required>
+                              <div *ngIf="f.submitted && !firstName.valid" class="help-block">First name is required</div>
+                            </label>
+                          </div>
+                        </div>
+
+
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label>
+                              <span class="text-darker ff--primary fw--500">Last Name</span>
+                              <input type="text" placeholder="Last Name *" class="form-control"
+                                     name="lastName" [(ngModel)]="user.lastName" #lastName="ngModel" required>
+                              <div *ngIf="f.submitted && !lastName.valid" class="help-block">Last name is required</div>
+                            </label>
+                          </div>
+                        </div>
+
+
+
+
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label>
+                              <span class="text-darker ff--primary fw--500">Password</span>
+                              <input type="password"placeholder="Password *" class="form-control"
+                                     name="password" [(ngModel)]="user.password" #password="ngModel" required>
+                              <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
+                            </label>
+                          </div>
+                        </div>
+
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label>
+                              <span class="text-darker ff--primary fw--500">Confirm Password</span>
+                              <input type="password"placeholder="Confirm Password *" class="form-control"
+                                     name="matchingPassword" [(ngModel)]="user.matchingPassword" #matchingPassword="ngModel" required>
+                              <div *ngIf="f.submitted && !matchingPassword.valid" class="help-block">Password is required</div>
+                            </label>
+                          </div>
+                        </div>
+
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label>
+                              <span class="text-darker ff--primary fw--500">About me</span>
+                              <textarea type="text" rows="3" placeholder="About me *" class="form-control"
+                                        name="text" [(ngModel)]="user.text" #text="ngModel" required></textarea>
+                              <div *ngIf="f.submitted && !password.text" class="help-block">Text is required</div>
+                            </label>
+                          </div>
+                        </div>
+
+
+
+                        <div class="col-md-12">
+                          <button type="submit" [disabled]="loading" class="btn btn-primary">Sign up</button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                  <!-- Buddy Finder Widget End -->
+                </div>
+                <!-- Widget End -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Banner Item End -->
+  </div>
+  <!-- Banner Slider End -->
+</section>

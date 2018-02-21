@@ -1,0 +1,365 @@
+<div class="page--header pt--60 pb--60 text-center" data-bg-img="img/page-header-img/bg.jpg" data-overlay="0.85">
+  <div class="container">
+    <div class="title">
+      <h2 class="h1 text-white">Blog</h2>
+    </div>
+
+    <ul class="breadcrumb text-gray ff--primary">
+      <li><a href="home-1.html" class="btn-link">Home</a></li>
+      <li class="active"><span class="text-primary">Blog Details</span></li>
+    </ul>
+  </div>
+</div>
+<!-- Page Header End -->
+
+<div class="myalert alert-{{error.type}}" role="alert" *ngIf="error">
+  <strong>Error!</strong> {{error.debugMessage}}
+</div>
+
+<!-- Page Wrapper Start -->
+<section class="page--wrapper pt--80 pb--20">
+  <div class="container">
+    <div class="row">
+      <!-- Main Content Start -->
+      <div class="main--content col-md-8 pb--30" data-trigger="stickyScroll">
+        <div class="main--content-inner">
+          <!-- Post Item Start -->
+          <div class="post--item post--single pb--30">
+
+
+            <!-- Post Info Start -->
+            <div class="post--info">
+              <!-- Post Meta Start -->
+              <div class="post--meta">
+                <ul class="nav">
+                  <li>
+                    <a href="#">
+                      <i class="mr--8 fa fa-calendar-o"></i>
+                      <span>{{blog.created | appMoment}}</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <i class="mr--8 fa fa-comments-o"></i>
+                      <span>{{blog.commentsCount}} Comments</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="post--title mt--10">
+                <h3 class="h4">{{blog.title}}</h3>
+              </div>
+
+              <div class="post--content text-darker mt--10">
+                <p>{{blog.text}}</p>
+              </div>
+
+              <div class="post--footer">
+                <div class="row">
+                  <div class="col-sm-6">
+                    <!-- Post Meta Start -->
+                    <div class="post--meta">
+                      <ul class="nav">
+
+                        <li>
+                          <i class="mr--8 fa fa-tags"></i>
+                          <a href="#" *ngFor="let tag of blog.tags"><span>{{tag}}</span></a>
+                        </li>
+                      </ul>
+                    </div>
+                    <!-- Post Meta End -->
+                  </div>
+
+                  <div class="col-sm-6">
+                    <!-- Post Social Start -->
+                    <div class="post--social-share clearfix">
+                      <ul class="nav">
+                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                        <li><a href="#"><i class="fa fa-pinterest-p"></i></a></li>
+                      </ul>
+                    </div>
+                    <!-- Post Social End -->
+                  </div>
+                </div>
+              </div>
+              <!-- Post Footer End -->
+            </div>
+            <!-- Post Info End -->
+          </div>
+          <!-- Post Item End -->
+
+          <!-- Post Nav Start -->
+          <div class="post--nav pt--40 pb--30">
+            <div class="row">
+              <div class="col-sm-6">
+                <!-- Post Nav Item Start -->
+                <a href="#" class="post--nav-item prev ff--primary fs--14 fw--500 text-darker">
+                  <p class="mb--0"><i class="text-primary mr--10 fa fa-caret-left"></i>Newer Post</p>
+
+                  <h4 class="h6 fw--500 mt--8">This Is The Place I Was Tell You About</h4>
+                </a>
+                <!-- Post Nav Item End -->
+              </div>
+
+              <div class="col-sm-6">
+                <!-- Post Nav Item Start -->
+                <a href="#" class="post--nav-item next ff--primary fs--14 fw--500 text-darker text-right">
+                  <p class="mb--0">Older Post<i class="text-primary ml--10 fa fa-caret-right"></i></p>
+
+                  <h4 class="h6 fw--500 mt--8">Tasty Stuffed Potato Dumpling Vegan</h4>
+                </a>
+                <!-- Post Nav Item End -->
+              </div>
+            </div>
+          </div>
+          <!-- Post Nav End -->
+
+          <!-- Post Author Start -->
+          <div class="post--author pt--40 pb--30">
+            <div class="post--author-inner clearfix">
+              <div class="img mr--30 text-black text-center float--left">
+                <img [src]="blog.member.avatar" alt="">
+
+                <p><a [routerLink]="['/system', 'member', blog.member.id]"
+                      class="btn-link">{{blog.member.firstName}} {{blog.member.lastName}}</a></p>
+              </div>
+
+              <div class="info ov--h fs--14 pt--8">
+                <div class="desc fw--500 fstyle--i">
+                  <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto.</p>
+                </div>
+
+                <div class="social text-gray">
+                  <ul class="nav">
+                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                    <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Post Author End -->
+
+          <!-- Related Posts Start -->
+          <div class="related--posts pt--40">
+            <h4 class="h4 pb--20">You May Also Like It</h4>
+
+            <div class="row AdjustRow">
+              <div class="col-md-6 pb--30">
+                <!-- Post Item Start -->
+                <div class="post--item">
+
+                  <!-- Post Info Start -->
+                  <div class="post--info">
+                    <!-- Post Meta Start -->
+                    <div class="post--meta">
+                      <ul class="nav">
+                        <li>
+                          <a href="#">
+                            <img src="img/posts-img/avatar-small-01.jpg" alt="">
+                            <span>Robbie T. Poorman</span>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="#">
+                            <i class="mr--8 fa fa-calendar-o"></i>
+                            <span>25 Nov 2017</span>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="#">
+                            <i class="mr--8 fa fa-comments-o"></i>
+                            <span>0 Comment</span>
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                    <!-- Post Meta End -->
+
+                    <!-- Post Title Start -->
+                    <div class="post--title mt--10">
+                      <h3 class="h6">
+                        <a href="#" class="btn-link">This Is the Place I Was Telling You About</a>
+                      </h3>
+                    </div>
+                    <!-- Post Title End -->
+
+                    <!-- Post Meta Start -->
+                    <div class="post--meta">
+                      <ul class="nav">
+                        <li>
+                          <i class="mr--8 fa fa-folder-open-o"></i>
+
+                          <a href="#"><span>Travel</span></a>
+                        </li>
+                        <li>
+                          <i class="mr--8 fa fa-tags"></i>
+
+                          <a href="#"><span>Lifestyle</span></a>
+                          <a href="#"><span>Study</span></a>
+                          <a href="#"><span>Walkout</span></a>
+                        </li>
+                      </ul>
+                    </div>
+                    <!-- Post Meta End -->
+
+                    <!-- Post Content Start -->
+                    <div class="post--content text-darker mt--10">
+                      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley.</p>
+                    </div>
+                    <!-- Post Content End -->
+
+                    <!-- Post Action Start -->
+                    <div class="post--action text-darkest mt--8">
+                      <a href="#" class="btn-link">Continue Reading<i class="ml--10 text-primary fa fa-caret-right"></i></a>
+                    </div>
+                    <!-- Post Action End -->
+                  </div>
+                  <!-- Post Info End -->
+                </div>
+                <!-- Post Item End -->
+              </div>
+
+              <div class="col-md-6 pb--30">
+                <!-- Post Item Start -->
+                <div class="post--item">
+
+                  <!-- Post Info Start -->
+                  <div class="post--info">
+                    <!-- Post Meta Start -->
+                    <div class="post--meta">
+                      <ul class="nav">
+                        <li>
+                          <a href="#">
+                            <img src="img/posts-img/avatar-small-05.jpg" alt="">
+                            <span>Anne S. McCoy</span>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="#">
+                            <i class="mr--8 fa fa-calendar-o"></i>
+                            <span>13 Jul 2017</span>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="#">
+                            <i class="mr--8 fa fa-comments-o"></i>
+                            <span>0 Comment</span>
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                    <!-- Post Meta End -->
+
+                    <!-- Post Title Start -->
+                    <div class="post--title mt--10">
+                      <h3 class="h6">
+                        <a href="#" class="btn-link">You Don't Need a Studio for Pro Portraits -- Make the Most of What You DO Have</a>
+                      </h3>
+                    </div>
+                    <!-- Post Title End -->
+
+                    <!-- Post Meta Start -->
+                    <div class="post--meta">
+                      <ul class="nav">
+                        <li>
+                          <i class="mr--8 fa fa-folder-open-o"></i>
+
+                          <a href="#"><span>Photography</span></a>
+                          <a href="#"><span>Discover</span></a>
+                        </li>
+                        <li>
+                          <i class="mr--8 fa fa-tags"></i>
+
+                          <a href="#"><span>Photo</span></a>
+                          <a href="#"><span>Discovery</span></a>
+                          <a href="#"><span>Mountain</span></a>
+                        </li>
+                      </ul>
+                    </div>
+                    <!-- Post Meta End -->
+
+                    <!-- Post Content Start -->
+                    <div class="post--content text-darker mt--10">
+                      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's unknown printer took a galley.</p>
+                    </div>
+                    <!-- Post Content End -->
+
+                    <!-- Post Action Start -->
+                    <div class="post--action text-darkest mt--8">
+                      <a href="#" class="btn-link">Continue Reading<i class="ml--10 text-primary fa fa-caret-right"></i></a>
+                    </div>
+                    <!-- Post Action End -->
+                  </div>
+                  <!-- Post Info End -->
+                </div>
+                <!-- Post Item End -->
+              </div>
+            </div>
+          </div>
+          <!-- Related Posts End -->
+
+          <!-- Comment List Start -->
+          <div class="comment--list pt--40">
+            <h4 class="h4 pb--20">{{blog.commentsCount}} Comments</h4>
+
+            <ul class="comment--items nav" *ngFor="let comment of comments">
+              <app-comment-item [comment]="comment"></app-comment-item>
+            </ul>
+          </div>
+
+
+          <div class="comment--form pb--30" data-form="validate">
+            <h4 class="h4 pb--15">Leave A Comment</h4>
+
+
+            <form action="#">
+              <div class="row gutter--15">
+
+                <div class="col-sm-12">
+                  <div class="form-group">
+                    <textarea name="comment" placeholder="Comment" class="form-control" required></textarea>
+                  </div>
+                </div>
+
+                <div class="col-sm-12 pt--10">
+                  <button type="submit" class="btn btn-sm btn-primary fs--14">Post Comment</button>
+                </div>
+              </div>
+            </form>
+          </div>
+          <!-- Comment Form End -->
+        </div>
+      </div>
+      <!-- Main Content End -->
+
+      <!-- Main Sidebar Start -->
+      <div class="main--sidebar col-md-4 pb--60" data-trigger="stickyScroll">
+
+
+        <div class="widget">
+          <app-notice-item></app-notice-item>
+        </div>
+
+        <div class="widget">
+          <h2 class="h4 fw--700 widget--title">Company</h2>
+          <div class="text--widget">
+            <app-company-item [company]="blog.company"></app-company-item>
+          </div>
+        </div>
+
+
+        <div class="widget">
+          <app-advertisements-item></app-advertisements-item>
+        </div>
+
+      </div>
+      <!-- Main Sidebar End -->
+    </div>
+  </div>
+</section>

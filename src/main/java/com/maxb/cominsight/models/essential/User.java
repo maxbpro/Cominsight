@@ -13,6 +13,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -25,36 +26,44 @@ public class User implements UserDetails {
     private String id;
 
     @NotNull
-    @Size(min = 2, max = 50)
-    private String firstName;
-
-    @NotNull
-    @Size(min = 2, max = 50)
-    private String lastName;
-
-    @NotNull
-    @Size(min = 2, max = 50)
     @Indexed
     private String username;
 
-    private String password;
-
     @NotNull
-    @Email
     @Indexed
     private String email;
 
-    private boolean anonymity = true;
+    @NotNull
+    private String firstName;
+
+    @NotNull
+    private String lastName;
+
+
+    private String password;
+
+    private String avatar;
+
+    private String text;
+
+    private LocalDateTime registeredDate = LocalDateTime.now();
+
     private Gender gender = null;
 
     private boolean accountNonExpired = true;
     private boolean accountNonLocked = true;
-    private boolean enabled = true;
+    private boolean enabled = false;
     private boolean credentialsNonExpired = true;
     private List<String> roles = new ArrayList<>();
 
 
+    //following companies
     private List<Following> following = new ArrayList<>();
+
+    //in the future maybe
+    //private List<Friend> friends = new ArrayList<>();
+
+    //own company
     private Company company = null;
 
     //news
@@ -105,4 +114,5 @@ public class User implements UserDetails {
         }
         return authorities;
     }
+
 }

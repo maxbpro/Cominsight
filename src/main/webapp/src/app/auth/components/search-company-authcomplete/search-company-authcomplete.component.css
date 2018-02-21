@@ -1,0 +1,21 @@
+li {
+  list-style-type: none;
+
+}
+ul {
+  margin-left: 0;
+  padding-left: 0;
+
+}
+
+.suggestions{
+  margin-top: 0px;
+  border: 1px solid #90bade;
+}
+
+.suggestion{
+  margin-top: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+}

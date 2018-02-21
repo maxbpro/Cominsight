@@ -1,0 +1,98 @@
+<div class="myalert alert-{{error.type}}" role="alert" *ngIf="error">
+  <strong>Error!</strong> {{error.debugMessage}}
+</div>
+
+
+<div *ngIf="loaded" >
+
+  <!-- Cover Header Start -->
+  <div class="cover--header pt--80 text-center" data-bg-img="img/cover-header-img/bg-01.jpg" data-overlay="0.6" data-overlay-color="white">
+    <div class="container">
+      <div class="cover--avatar online" data-overlay="0.3" data-overlay-color="primary">
+        <img [src]="member.avatar" alt="">
+      </div>
+
+      <div class="cover--user-name">
+        <h2 class="h3 fw--600">{{member.firstName}} {{member.lastName}}</h2>
+      </div>
+
+      <div class="cover--user-activity">
+        <p><i class="fa mr--8 fa-clock-o"></i>Active 1 year 9 monts ago</p>
+      </div>
+
+      <div class="cover--user-desc fw--400 fs--18 fstyle--i text-darkest">
+        <p>Hello everyone ! There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour.</p>
+      </div>
+
+      <div class="load-more--btn pt--30 text-center">
+        <a [routerLink]="['/system', 'company', member.company.id]" class="btn btn-animate">
+          <span>Open Company<i class="fa ml--10 fa-caret-right"></i></span>
+        </a>
+      </div>
+
+    </div>
+  </div>
+  <!-- Cover Header End -->
+
+  <!-- Page Wrapper Start -->
+  <section class="page--wrapper pt--80 pb--20">
+    <div class="container">
+      <div class="row">
+        <!-- Main Content Start -->
+        <div class="main--content col-md-8 pb--60" data-trigger="stickyScroll">
+          <div class="main--content-inner drop--shadow">
+            <!-- Content Nav Start -->
+            <div class="content--nav pb--30">
+              <ul class="nav ff--primary fs--14 fw--500 bg-lighter">
+                <li class="active"><a [routerLink]="['/system', 'member', id, 'details', id]">Details</a></li>
+                <li><a [routerLink]="['/system', 'member',id, 'companies', id]">Companies</a></li>
+                <li><a [routerLink]="['/system', 'member',id, 'media', id]">Media</a></li>
+                <li><a [routerLink]="['/system', 'member',id, 'blogs', id]">Blogs</a></li>
+                <li><a [routerLink]="['/system', 'member',id, 'activity', id]">Activity</a></li>
+              </ul>
+            </div>
+            <!-- Content Nav End -->
+
+            <router-outlet></router-outlet>
+          </div>
+        </div>
+        <!-- Main Content End -->
+
+        <!-- Main Sidebar Start -->
+        <div class="main--sidebar col-md-4 pb--60" data-trigger="stickyScroll">
+
+          <div class="widget">
+            <app-notice-item></app-notice-item>
+          </div>
+
+
+          <!-- Widget Start -->
+          <div class="widget">
+            <h2 class="h4 fw--700 widget--title">Company</h2>
+
+            <!-- Ad Widget Start -->
+            <div class="text--widget">
+              <app-company-item [company]="member.company"></app-company-item>
+            </div>
+            <!-- Ad Widget End -->
+          </div>
+
+
+          <div class="widget">
+            <app-blogs-summary-item></app-blogs-summary-item>
+          </div>
+
+          <div class="widget">
+            <app-advertisements-item></app-advertisements-item>
+          </div>
+
+        </div>
+        <!-- Main Sidebar End -->
+      </div>
+    </div>
+  </section>
+
+</div>
+
+
+

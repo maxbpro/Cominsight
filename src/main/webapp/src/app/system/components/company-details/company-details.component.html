@@ -1,0 +1,78 @@
+<div class="profile--details fs--14" *ngIf="loaded">
+  <!-- Profile Item Start -->
+  <div class="profile--item">
+    <div class="profile--heading">
+      <h3 class="h4 fw--700">
+        <span class="mr--4">About Company</span>
+        <i class="ml--10 text-primary fa fa-caret-right"></i>
+      </h3>
+    </div>
+
+    <div class="profile--info">
+      <table class="table">
+        <tr>
+          <th class="fw--700 text-darkest">Full Name</th>
+          <td><a href="#" class="btn-link">Eileen K. Ruiz</a></td>
+        </tr>
+        <tr>
+          <th class="fw--700 text-darkest">Category</th>
+          <td>{{company.category}}</td>
+        </tr>
+        <tr>
+          <th class="fw--700 text-darkest">Date of Registration</th>
+          <td>{{company.registeredDate | appMoment}}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <!-- Profile Item End -->
+
+  <!-- Profile Item Start -->
+  <div class="profile--item">
+    <div class="profile--heading">
+      <h3 class="h4 fw--700">
+        <span class="mr--4">Description</span>
+        <i class="ml--10 text-primary fa fa-caret-right"></i>
+      </h3>
+    </div>
+
+    <div class="profile--info">
+      <p>{{company.text}}</p>
+    </div>
+  </div>
+  <!-- Profile Item End -->
+
+
+
+  <!-- Profile Item Start -->
+  <div class="profile--item">
+    <div class="profile--heading">
+      <h3 class="h4 fw--700">
+        <span class="mr--4">Contact</span>
+        <i class="ml--10 text-primary fa fa-caret-right"></i>
+      </h3>
+    </div>
+
+    <div class="profile--info">
+      <table class="table">
+        <tr *ngIf="company.phone">
+          <th class="fw--700 text-darkest">Phone</th>
+          <td><a href="tel:+16105598246">{{company.phone}}</a></td>
+        </tr>
+        <tr *ngIf="company.email">
+          <th class="fw--700 text-darkest">E-mail</th>
+          <td><a href="mailto:demo@fakemail.com">{{company.email}}</a></td>
+        </tr>
+        <tr *ngIf="company.url">
+          <th class="fw--700 text-darkest">Website</th>
+          <td><a href="#">{{company.url}}</a></td>
+        </tr>
+        <tr *ngIf="company.address">
+          <th class="fw--700 text-darkest">Address</th>
+          <td>{{company.address}}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <!-- Profile Item End -->
+</div>
